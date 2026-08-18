@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Kaynat Fabrics | UPI Checkout</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div class="announcement">Secure checkout • UPI enabled</div>
+<header class="header"><a class="logo" href="index.html"><span>K</span> Kaynat Fabrics</a><a href="index.html" style="color:#241d1b;text-decoration:none;font-size:13px">← Continue shopping</a></header>
+<main style="min-height:calc(100vh - 150px);display:grid;place-items:center;padding:40px 20px;background:#f7f1eb">
+<div style="width:min(470px,100%);background:#fff;padding:35px;border:1px solid #e8dfd8;border-radius:6px">
+<p class="eyebrow">UPI CHECKOUT</p><h1 style="font:500 40px 'Playfair Display';margin:0 0 10px">Complete your order</h1>
+<p style="color:#756b67">Amount payable</p><div style="font:700 38px 'Playfair Display';margin:8px 0 25px">₹<span id="amount">0</span></div>
+<div style="background:#f7f1eb;padding:20px;margin-bottom:15px"><small>PAY TO UPI ID</small><div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;gap:10px"><strong id="upi">9508229704@pthdfc</strong><button class="btn" style="padding:8px 12px;border:1px solid #241d1b;background:#fff" onclick="copyUPI()">Copy</button></div></div>
+<a id="pay" class="btn btn-dark full" href="#">Open UPI App</a><p id="msg" style="text-align:center;color:#a34d68;font-size:13px"></p>
+<p style="font-size:11px;color:#756b67;text-align:center;line-height:1.6">After completing payment, keep your UPI transaction ID for order confirmation.</p>
+</div></main>
+<script>
+const a=Math.max(0,Number(new URLSearchParams(location.search).get("amount")||0));
+document.getElementById("amount").textContent=a.toLocaleString("en-IN");
+document.getElementById("pay").href="upi://pay?pa=9508229704@pthdfc&pn=Kaynat%20Fabrics&am="+encodeURIComponent(a)+"&cu=INR";
+function copyUPI(){navigator.clipboard?.writeText("9508229704@pthdfc").then(()=>document.getElementById("msg").textContent="UPI ID copied!")}
+</script></body></html>

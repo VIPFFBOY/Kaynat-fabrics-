@@ -3,134 +3,117 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kaynat Fabrics - UPI Payment</title>
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      margin: 0;
-      padding: 30px 15px;
-      text-align: center;
-    }
-
-    .payment-box {
-      max-width: 420px;
-      margin: auto;
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.12);
-    }
-
-    h1 {
-      margin-bottom: 10px;
-    }
-
-    .upi-id {
-      background: #f1f1f1;
-      padding: 12px;
-      border-radius: 8px;
-      margin: 15px 0;
-      font-weight: bold;
-      word-break: break-all;
-    }
-
-    input {
-      width: 90%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-
-    button {
-      width: 95%;
-      padding: 13px;
-      margin: 8px 0;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .pay {
-      background: #168a45;
-      color: white;
-    }
-
-    .copy {
-      background: #333;
-      color: white;
-    }
-
-    #message {
-      margin-top: 12px;
-      font-weight: bold;
-    }
-  </style>
+  <meta name="description" content="Kaynat Fabrics — women's ethnic wear, sarees, suits, kurtis and festive collections.">
+  <title>Kaynat Fabrics | Women's Ethnic Wear</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <div class="announcement">Free shipping on orders above ₹1,999 • Easy returns • Secure UPI checkout</div>
 
-  <div class="payment-box">
-
-    <h1>Kaynat Fabrics</h1>
-    <p>Secure UPI Payment</p>
-
-    <div class="upi-id" id="upiId">
-      9508229704@pthdfc
+  <header class="header">
+    <a class="logo" href="index.html"><span>K</span> Kaynat Fabrics</a>
+    <nav>
+      <a href="#new">New Arrivals</a>
+      <a href="#shop">Shop</a>
+      <a href="#about">About</a>
+    </nav>
+    <div class="actions">
+      <button class="icon-btn" onclick="toggleSearch()" aria-label="Search">⌕</button>
+      <button class="icon-btn" onclick="openCart()" aria-label="Shopping bag">♡ <b id="cartCount">0</b></button>
     </div>
+  </header>
 
-    <button class="copy" onclick="copyUPI()">
-      📋 Copy UPI ID
-    </button>
-
-    <input
-      type="number"
-      id="amount"
-      placeholder="Enter Amount (₹)"
-      min="1"
-    >
-
-    <button class="pay" onclick="payUPI()">
-      💳 Pay via UPI
-    </button>
-
-    <div id="message"></div>
-
+  <div id="searchBar" class="searchbar">
+    <input id="searchInput" type="search" placeholder="Search sarees, suits, kurtis..." oninput="renderProducts()">
   </div>
 
-  <script>
-    const upiID = "9508229704@pthdfc";
-    const businessName = "Kaynat Fabrics";
+  <main>
+    <section class="hero" id="new">
+      <div class="hero-copy">
+        <p class="eyebrow">NEW ETHNIC SETS • ₹899</p>
+        <h1>Tradition,<br><em>beautifully</em> reimagined.</h1>
+        <p>Fresh women’s ethnic sets in beautiful prints and colours — easy to style for everyday wear, outings and festive moments.</p>
+        <a class="btn btn-dark" href="#shop">Shop the collection</a>
+      </div>
+      <div class="hero-art">
+        <div class="arch">
+          <div class="model-card"><span>नई</span><strong>Festive<br>Silhouettes</strong></div>
+        </div>
+      </div>
+    </section>
 
-    function copyUPI() {
-      navigator.clipboard.writeText(upiID);
+    <section class="categories">
+      <a href="#shop" onclick="setCategory('Sarees')"><span>🥻</span><b>Sarees</b><small>Silk & drapes</small></a>
+      <a href="#shop" onclick="setCategory('Suits')"><span>🌸</span><b>Suits</b><small>Elegant sets</small></a>
+      <a href="#shop" onclick="setCategory('Kurtis')"><span>✨</span><b>Kurtis</b><small>Everyday chic</small></a>
+      <a href="#shop" onclick="setCategory('Lehengas')"><span>💫</span><b>Lehengas</b><small>Celebration edit</small></a>
+    </section>
 
-      document.getElementById("message").innerText =
-        "✅ UPI ID copied successfully!";
-    }
+    <section class="shop" id="shop">
+      <div class="section-title">
+        <div>
+          <p class="eyebrow">SHOP KAYNAT</p>
+          <h2>New arrivals at ₹899</h2>
+        </div>
+        <div class="filters">
+          <select id="categoryFilter" onchange="renderProducts()">
+            <option value="All">All categories</option>
+            <option value="Sarees">Sarees</option>
+            <option value="Suits">Suits</option>
+            <option value="Kurtis">Kurtis</option>
+            <option value="Lehengas">Lehengas</option>
+          </select>
+          <select id="sortFilter" onchange="renderProducts()">
+            <option value="featured">Featured</option>
+            <option value="low">Price: low to high</option>
+            <option value="high">Price: high to low</option>
+          </select>
+        </div>
+      </div>
+      <div id="products" class="product-grid"></div>
+    </section>
 
-    function payUPI() {
-      const amount = document.getElementById("amount").value;
+    <section class="story" id="about">
+      <div>
+        <p class="eyebrow">OUR STORY</p>
+        <h2>Indian craft.<br>Modern confidence.</h2>
+      </div>
+      <p>At Kaynat Fabrics, we celebrate the beauty of Indian textiles through contemporary colours, graceful silhouettes and thoughtful details. From a family gathering to a grand wedding, find something that feels like you.</p>
+    </section>
 
-      if (!amount || amount <= 0) {
-        document.getElementById("message").innerText =
-          "⚠️ Please enter a valid amount.";
-        return;
-      }
+    <section class="newsletter">
+      <p class="eyebrow">JOIN THE KAYNAT CIRCLE</p>
+      <h2>New drops, festive edits & offers.</h2>
+      <form onsubmit="subscribe(event)">
+        <input type="email" id="email" required placeholder="Your email address">
+        <button class="btn btn-dark">Subscribe</button>
+      </form>
+      <small id="subMsg"></small>
+    </section>
+  </main>
 
-      const upiLink =
-        "upi://pay?pa=" + encodeURIComponent(upiID) +
-        "&pn=" + encodeURIComponent(businessName) +
-        "&am=" + encodeURIComponent(amount) +
-        "&cu=INR";
+  <footer>
+    <div>
+      <a class="logo" href="#"><span>K</span> Kaynat Fabrics</a>
+      <p>Women's ethnic wear, thoughtfully selected.</p>
+    </div>
+    <div><b>Shop</b><a href="#shop">Sarees</a><a href="#shop">Suits</a><a href="#shop">Kurtis</a></div>
+    <div><b>Help</b><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Contact</a></div>
+    <div><b>Follow</b><a href="#">Instagram</a><a href="#">Facebook</a></div>
+  </footer>
+  <div class="copyright">© 2026 Kaynat Fabrics. All rights reserved.</div>
 
-      window.location.href = upiLink;
-    }
-  </script>
+  <div id="overlay" class="overlay" onclick="closeCart()"></div>
+  <aside id="cart" class="cart">
+    <div class="cart-top"><h2>Your Bag</h2><button onclick="closeCart()">×</button></div>
+    <div id="cartItems"></div>
+    <div class="cart-bottom">
+      <div class="total"><span>Subtotal</span><strong>₹<span id="cartTotal">0</span></strong></div>
+      <button class="btn btn-dark full" onclick="checkout()">Proceed to UPI payment</button>
+      <small>Taxes and shipping calculated at checkout.</small>
+    </div>
+  </aside>
 
+  <script src="script.js"></script>
 </body>
 </html>
