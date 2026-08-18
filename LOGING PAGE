@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>KAYNAT FABRICS — Login</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <div class="brand">
+        <!-- If you have a logo, replace the text below with an <img src="logo.png" alt="KAYNAT FABRICS"> -->
+        <span class="brand-name">KAYNAT FABRICS</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <h1>Sign in</h1>
+
+      <div class="social-buttons">
+        <button id="googleBtn" class="btn google">Continue with Google</button>
+        <button id="appleBtn" class="btn apple">Continue with Apple</button>
+      </div>
+
+      <div class="divider"><span>or</span></div>
+
+      <form id="phoneForm" class="phone-form" onsubmit="return false;">
+        <label for="phone">Phone number</label>
+        <input id="phone" type="tel" placeholder="+1 555 555 5555" required>
+        <div id="recaptcha-container"></div>
+        <button id="sendCodeBtn" class="btn primary">Send code</button>
+      </form>
+
+      <form id="codeForm" class="code-form" onsubmit="return false;" style="display:none;">
+        <label for="code">Enter verification code</label>
+        <input id="code" type="text" placeholder="123456" required>
+        <button id="verifyCodeBtn" class="btn primary">Verify code</button>
+      </form>
+
+      <div id="status" class="status" aria-live="polite"></div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
