@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Kaynat Fabrics</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <main class="login-shell">
+    <section class="login-card">
+      <div class="login-form-side">
+        <a class="brand" href="index.html">KAYNAT FABRICS</a>
+
+        <div class="form-wrap">
+          <p class="eyebrow">WELCOME BACK</p>
+          <h1>Account<br><span>Login</span></h1>
+          <p class="intro">Sign in to continue shopping your favourite ethnic styles.</p>
+
+          <div class="social-row">
+            <button type="button" class="social" onclick="demoSocial('Google')">
+              <span class="google">G</span> Google
+            </button>
+            <button type="button" class="social" onclick="demoSocial('Facebook')">
+              <span class="facebook">f</span> Facebook
+            </button>
+          </div>
+
+          <div class="divider"><span>OR</span></div>
+
+          <form onsubmit="login(event)">
+            <label for="email">EMAIL ADDRESS</label>
+            <input id="email" type="email" placeholder="you@example.com" required>
+
+            <label for="password">PASSWORD</label>
+            <input id="password" type="password" placeholder="Enter your password" required>
+
+            <div class="form-row">
+              <label class="remember"><input id="remember" type="checkbox"> <span>Remember me</span></label>
+              <a href="#" onclick="forgot(event)">Forgot password?</a>
+            </div>
+
+            <button class="login-btn" type="submit">LOG IN</button>
+          </form>
+
+          <p id="message" class="message"></p>
+          <p class="signup">NEW TO KAYNAT? <a href="#" onclick="createAccount(event)">CREATE ACCOUNT</a></p>
+          <a class="back" href="index.html">← Continue shopping</a>
+        </div>
+      </div>
+
+      <div class="login-image-side">
+        <img src="berry-set.jpg" alt="Kaynat Fabrics ethnic wear">
+        <div class="image-overlay">
+          <span>NEW COLLECTION</span>
+          <strong>Ethnic styles<br>made for you.</strong>
+          <small>Shop beautiful sets from ₹899</small>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function login(e){
+      e.preventDefault();
+      const email=document.getElementById('email').value.trim();
+      localStorage.setItem('kaynatUser', email);
+      document.getElementById('message').textContent='Login successful — welcome to Kaynat Fabrics!';
+      setTimeout(()=>location.href='index.html', 900);
+    }
+    function demoSocial(provider){
+      document.getElementById('message').textContent=provider+' login is ready for integration. For now, please use email and password.';
+    }
+    function forgot(e){
+      e.preventDefault();
+      document.getElementById('message').textContent='Password reset can be connected when email authentication is added.';
+    }
+    function createAccount(e){
+      e.preventDefault();
+      document.getElementById('message').textContent='Create-account form can be added next.';
+    }
+  </script>
+</body>
+</html>
